@@ -3,12 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP Address Checker with WebRTC</title>
+    <title>Proxy Detector</title>
+    <link rel="icon" href="/favicon.ico">
+    <style>
+        /* Add some basic styling */
+        .container {
+            padding: 20px;
+        }
+        .alert {
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 10px;
+            padding: 15px;
+        }
+        .card-title {
+            font-size: 1.5em;
+        }
+    </style>
 </head>
 <body>
-    <h1>Your IP Addresses</h1>
-    <ul id="ip-addresses">Loading...</ul>
-
-    <script src="script.js"></script>
+    <div class="container">
+        <h1 class="text-center">Proxy Detector</h1>
+        <div id="status"></div>
+        <div id="results"></div>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>
