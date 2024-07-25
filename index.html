@@ -29,14 +29,25 @@
                 ]
             });
 
+            // Используем Set для хранения уникальных IP-адресов
+            var uniqueIPs = new Set();
+
             function handleCandidate(candidate) {
                 console.log("Handling candidate:", candidate);
                 var ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9:]{1,4}(:[a-f0-9:]{1,4}){7})/g;
-                var ip = candidate.match(ipRegex);
-                if (ip) {
-                    ip.forEach(ip => {
-                        console.log("Found IP:", ip);
-                        onNewIP(ip);
+                var ips = candidate.match(ipRegex);
+                if (ips) {
+                    ips.forEach(ip => {
+                        // Фильтруем локальные IP-адреса и дублирующиеся IP
+                        if (!ip.startsWith('127.') && !ip.startsWith('10.') &&
+                            !ip.startsWith('172.') && !ip.startsWith('192.168.') &&
+                            !ip.startsWith('169.254.')) {
+                            if (!uniqueIPs.has(ip)) {
+                                uniqueIPs.add(ip);
+                                console.log("Found IP:", ip);
+                                onNewIP(ip);
+                            }
+                        }
                     });
                 }
             }
